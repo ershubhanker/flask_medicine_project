@@ -1,0 +1,98 @@
+body {
+    background-color: #ffffff;
+    font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif; /* This will give a rounded effect to your font */
+    display: flex;
+    justify-content: center; /* This centers the content horizontally */
+    align-items: center; /* This centers the content vertically */
+    height: 100vh; /* Use the full height of the screen */
+    margin: 0; /* Reset default margin */
+  }
+
+  .wrapper {
+    text-align: center; /* Center align the inner content */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* A subtle shadow to the wrapper for some depth */
+    border-radius: 8px; /* Rounded corners for the wrapper */
+    background-color: #f9f9f9; /* A light grey background for the wrapper */
+    width: 50%; /* The wrapper takes up half the width of its container */
+    margin-top: 50px; /* Give some space from the top */
+  }
+
+  #autocomplete1 {
+    width: 100%; /* Make the input take the full width of its parent */
+    padding: 15px 20px;
+    border: 2px solid #ffa3b1; /* A pink border for your input */
+    border-radius: 25px;
+    font-size: 18px;
+    background-color: #fff0f3; /* A soft pink background */
+    margin-bottom: 20px; /* Space below the search box */
+  }
+
+  .autocomplete-suggestions {
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* A shadow for the suggestions box */
+  }
+
+  .autocomplete-suggestion {
+    padding: 10px;
+    border-bottom: 1px solid #efefef; /* A subtle line between suggestions */
+    background-color: #fff; /* White background for each suggestion */
+    cursor: pointer; /* Change cursor to indicate clickable */
+  }
+
+  .autocomplete-suggestion:hover {
+    background-color: #ffe3e9; /* A soft hover color */
+  }
+
+  .autocomplete-suggestion:last-child {
+    border-bottom: none; /* Remove bottom border for the last suggestion */
+  }
+  
+  .tag a.remove-tag {
+    color: #999;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+  
+  .tag a.remove-tag:hover {
+    color: #e00;
+  }
+
+  .search-container {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 5px; /* Adds a gap between tags and input */
+    /* Removed border and background to blend with the input field */
+  }
+  
+  .search-container input[type="text"] {
+    flex-grow: 1;
+    padding: 5px;
+    margin: 0;
+    border: none; /* Remove border */
+    outline: none;
+    background: transparent;
+    font-size: 18px;
+    /* ... */
+  }
+  
+.tags-container {
+  margin-bottom: 8px; /* Space between tags and search box */
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: #333; /* Tag background */
+  color: white; /* Tag text color */
+  padding: 5px 10px;
+  border-radius: 3px;
+  margin-right: 5px; /* Space between tags */
+  /* Other styles as needed */
+}
+
+  

@@ -1,31 +1,66 @@
 <head>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.26/jquery.autocomplete.min.js"></script>
+  <link rel="stylesheet" href="static/style.css">
 </head>
 
 <body>
-  Names:
-  <input type="text" name="names" id="autocomplete1"/>
-  <input type="submit" value="Submit">
-  <!-- Songs:
-  <input type="text" name="songs" id="autocomplete2"/> -->
+  <div class="wrapper">
+    <div id="tags-container" class="tags-container">
+      <!-- Selected tags will appear here -->
+    </div>
+    <div id="search-container" class="search-container">
+      <input type="text" name="names" id="autocomplete1" placeholder="Drug name"/>
+    </div>
+    <input type="submit" value="Submit">
+  </div>
+  
 
 
   <script>
-  $('#autocomplete1').autocomplete({
-      serviceUrl: '/search/names',
-      dataType: 'json',
-      onSearchComplete: function (query, suggestions) {
-        console.log(query);
-      }
-  });
+$('#autocomplete1').autocomplete({
+  serviceUrl: '/search/names',
+  dataType: 'json',
+  minChars: 3,
+  maxHeight: 300,
+  onSelect: function (suggestion) {
+    // Get the PCID from the selected suggestion
+    var pcid = suggestion.data.drugbank_pcid;
+    console.log('Selected PCID:', pcid);  // Keeping the console log for debugging
+    createTag(suggestion.value);  // Continue to create a tag as before
 
-//   $('#autocomplete2').autocomplete({
-//       serviceUrl: '/search/songs',
-//       dataType: 'json',
-//       onSearchComplete: function (query, suggestions) {
-//         console.log(query);
-//       }
-//   });
+    // Now make an AJAX call to the new Flask route to get the drug routes
+    $.ajax({
+      url: '/drug_routes/' + pcid,
+      type: 'GET',
+      dataType: 'json',
+      success: function(data) {
+        // Assuming you will handle the new suggestions here.
+        // This will require updating your autocomplete instance with new data
+        console.log(data);  // For now, we're just logging it to see what comes back.
+        // TODO: Replace current autocomplete data with new routes
+      },
+      error: function(error) {
+        console.error('Error fetching drug routes:', error);
+      }
+    });
+  },
+});
+
+function createTag(name) {
+  var tag = $('<span class="tag">' + name + '<a href="#" class="remove-tag">&#10006;</a></span>');
+  $('#autocomplete1').val(''); // Clear the input
+  $('#tags-container').append(tag); // Add the tag to the tags-container
+
+  $('.remove-tag').click(function(e) {
+    e.preventDefault(); // Prevent default anchor behavior
+    $(this).parent().remove(); // Remove the tag
+    $('#autocomplete1').focus(); // Focus back on the input
+  });
+}
+
+
+
+
   </script>
 </body>
