@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="DRUGBANK_UI_LOG_LEVEL" content="info">
+    <title>Medication Search</title>
+    <script src="static/drugbank-ui.min.js"></script>
+    <script src="static/custom.js"></script>
+</head>
+<body>
+
+<form action="/submit" method="post">
+    <db-medication-search name="medication-1" jwt="{{ jwt_token }}" refresh-jwt="/refresh"></db-medication-search>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<head>
+  <style>
+  .Name {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 24px;
+  }
+
+  .search-container {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+  }
+
+  input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px
+  }
+
+  .search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #d900c3;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .autocomplete-suggestions {
+    border: 1px solid #ccc;
+    max-height: 150px; /* Limit the height of suggestions */
+    overflow-y: auto;
+    position: absolute;
+    width: 100%; /* Match the input width */
+    background-color: #fff;
+    z-index: 1; /* Ensure suggestions are above other content */
+  }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.26/jquery.autocomplete.min.js"></script>
+</head>
+
+<body>
+  <div class="Name">Drug Names</div>
+  <div class="search-container">
+    <input type="text" id="autocomplete1" placeholder="Search for drug names" />
+    <button class="search-button">Search</button>
+  </div>
+  <!-- <input type="text" name="names" id="autocomplete1"/>
+  <input type="submit" value="Submit"> -->
+  <!-- Songs:
+  <input type="text" name="songs" id="autocomplete2"/> -->
+
+
+  <script>
+  $('#autocomplete1').autocomplete({
+      serviceUrl: '/search/names',
+      dataType: 'json',
+      onSearchComplete: function (query, suggestions) {
+        console.log(query);
+      },
+  });
+
+//   $('#autocomplete2').autocomplete({
+//       serviceUrl: '/search/songs',
+//       dataType: 'json',
+//       onSearchComplete: function (query, suggestions) {
+//         console.log(query);
+//       }
+//   });
+  </script>
+</body>
