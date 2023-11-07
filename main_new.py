@@ -2,6 +2,12 @@ from flask import Flask, request, render_template, jsonify
 import requests
 import json
 from functools import lru_cache
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Loads environment variables from .env
+
+API_KEY = os.getenv('DRUGBANK_API_KEY')
 
 app = Flask(__name__)
 
@@ -12,22 +18,19 @@ def index():
 
 @lru_cache(maxsize=32)
 def get_drug_suggestions(query):
-    url = f"https://api.drugbank.com/v1/product_concepts?q={query}"
+    url = f"https://api.drugbank.com/v1/product_concepts?q={query}&min_level=4&max_level=4"
     headers = {
-        'authorization': 'df338cac4d1c76de487260acb441be5c'
+        'authorization': API_KEY
     }
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         data = response.json()
         suggestion_list = []
         for item in data:
-            for hit in item.get('hits', []):
-                # Remove HTML tags for highlighting
-                clean_value = hit['value'].replace('<em>', '').replace('</em>', '')
-                suggestion_list.append({
-                'value': clean_value,  # the display value
+            suggestion_list.append({
+                'value': item['name'],  # the display value now comes from 'name'
                 'data': {
-                    'value': clean_value,
+                    'value': item['name'],  # the display value now comes from 'name'
                     'drugbank_pcid': item['drugbank_pcid']  # the PCID from the item
                 }
             })
@@ -49,23 +52,6 @@ def process(box):
     else:
         # Handle cases where query is too short or box is not 'names'
         return jsonify({"error": "Invalid request"})
-
-
-
-@app.route("/drug_routes/<string:pcid>")
-def drug_routes(pcid):
-    url = f"https://api.drugbank.com/v1/product_concepts/{pcid}/routes"
-    headers = {
-        'authorization': 'df338cac4d1c76de487260acb441be5c'  # Make sure to keep your API keys secret in a production environment
-    }
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        data = response.json()
-        routes_list = [{'label': f"{item.get('name')}", 'value': item.get('route')} for item in data]
-        return jsonify(routes_list)
-    else:
-        return jsonify({"error": "Failed to fetch drug routes"}), response.status_code
-
 
 
 

@@ -8,16 +8,6 @@ body {
     margin: 0; /* Reset default margin */
   }
 
-  .wrapper {
-    text-align: center; /* Center align the inner content */
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* A subtle shadow to the wrapper for some depth */
-    border-radius: 8px; /* Rounded corners for the wrapper */
-    background-color: #f9f9f9; /* A light grey background for the wrapper */
-    width: 50%; /* The wrapper takes up half the width of its container */
-    margin-top: 50px; /* Give some space from the top */
-  }
-
   #autocomplete1 {
     width: 100%; /* Make the input take the full width of its parent */
     padding: 15px 20px;
@@ -69,30 +59,114 @@ body {
     /* Removed border and background to blend with the input field */
   }
   
-  .search-container input[type="text"] {
-    flex-grow: 1;
-    padding: 5px;
-    margin: 0;
-    border: none; /* Remove border */
-    outline: none;
-    background: transparent;
-    font-size: 18px;
-    /* ... */
-  }
-  
-.tags-container {
-  margin-bottom: 8px; /* Space between tags and search box */
+  /* Style for the wrapper */
+.wrapper {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Style for the tags container */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Style for each tag */
 .tag {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  background-color: #007bff;
+  color: #ffffff;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+/* Style for the remove button in each tag */
+.remove-tag {
   display: inline-flex;
   align-items: center;
-  background-color: #333; /* Tag background */
-  color: white; /* Tag text color */
-  padding: 5px 10px;
-  border-radius: 3px;
-  margin-right: 5px; /* Space between tags */
-  /* Other styles as needed */
+  justify-content: center;
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+  background-color: #0056b3;
+  border-radius: 50%;
+  font-size: 1rem;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
 }
 
-  
+/* Style for the autocomplete input */
+.search-container input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+/* Style for the submit button */
+input[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+input[type="submit"]:hover {
+  background-color: #218838;
+}
+
+/* Add some hover effects for tags */
+.tag:hover, .remove-tag:hover {
+  background-color: #0056b3;
+}
+
+/* Style for the search and tags container */
+.search-and-tags-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Style for the drugs list like a spreadsheet */
+.drugs-list {
+  width: 100%;
+  margin-bottom: 20px; /* Space below the list */
+}
+
+.drugs-list ol {
+  list-style: none; /* Remove default list style */
+  padding: 0;
+  margin: 0;
+  background: #f2f2f2; /* Light grey background */
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.drugs-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd; /* Separator for items */
+  padding: 10px;
+  background-color: #fff;
+}
+
+.drugs-list li:last-child {
+  border-bottom: none;
+}
