@@ -1,12 +1,11 @@
 body {
-    background-color: #ffffff;
-    font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif; /* This will give a rounded effect to your font */
-    display: flex;
-    justify-content: center; /* This centers the content horizontally */
-    align-items: center; /* This centers the content vertically */
-    height: 100vh; /* Use the full height of the screen */
-    margin: 0; /* Reset default margin */
-  }
+  background-color: #ffffff;
+  font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+  /* Remove the flex display to allow normal top-to-bottom document flow */
+  margin: 0; /* Reset default margin */
+  padding: 20px; /* Add some padding around your content */
+  text-align: center; /* Center align the content for better appearance */
+}
 
   #autocomplete1 {
     width: 100%; /* Make the input take the full width of its parent */
@@ -59,10 +58,10 @@ body {
     /* Removed border and background to blend with the input field */
   }
   
-  /* Style for the wrapper */
+/* Style for the wrapper */
 .wrapper {
   max-width: 600px;
-  margin: 2rem auto;
+  margin: 2rem auto; /* Center the wrapper and add margin to top and bottom */
   padding: 1rem;
   background: #f9f9f9;
   border-radius: 8px;
@@ -93,18 +92,12 @@ body {
 
 /* Style for the remove button in each tag */
 .remove-tag {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 10px;
-  width: 20px;
-  height: 20px;
-  background-color: #0056b3;
-  border-radius: 50%;
-  font-size: 1rem;
-  line-height: 1;
-  text-align: center;
-  cursor: pointer;
+  display: inline;
+  color: #000; /* Black color */
+  background-color: transparent; /* No background color */
+  font-size: 14px; /* Smaller font size, adjust as needed */
+  text-decoration: none; /* No underline */
+  cursor: pointer; /* Keep the cursor as pointer to indicate it's clickable */
 }
 
 /* Style for the autocomplete input */
@@ -132,8 +125,14 @@ input[type="submit"]:hover {
 }
 
 /* Add some hover effects for tags */
-.tag:hover, .remove-tag:hover {
+.tag:hover {
   background-color: #0056b3;
+}
+
+/* Ensure that the hover state is also clear and simple */
+.remove-tag:hover {
+  color: #555; /* A darker grey on hover to indicate interactivity */
+  background-color: transparent; /* Maintain no background on hover */
 }
 
 /* Style for the search and tags container */
@@ -147,6 +146,7 @@ input[type="submit"]:hover {
 .drugs-list {
   width: 100%;
   margin-bottom: 20px; /* Space below the list */
+  box-shadow: none;
 }
 
 .drugs-list ol {
@@ -169,4 +169,52 @@ input[type="submit"]:hover {
 
 .drugs-list li:last-child {
   border-bottom: none;
+}
+
+h2 {
+  color: #333; /* Change the color to suit your design */
+  text-align: center; /* Center the heading if you like */
+  margin-bottom: 1rem; /* Add some space below the heading */
+  /* Add other styles as needed */
+}
+
+
+#no-meds-text {
+  color: #999;
+  text-align: center;
+  padding: 10px;
+  /* You can add more styles if needed */
+}
+
+
+.drug-item {
+  font-family: 'Times New Roman', serif;
+  font-size: 14px; /* Smaller font size */
+  background-color: transparent; /* No background */
+  color: #000; /* Black font color */
+  padding: 4px; /* Less padding for a minimal look */
+  border-bottom: 1px solid #ddd; /* Light grey line to separate items */
+}
+
+.drug-item a.remove-tag {
+  color: #000; /* Black color for the 'X' */
+  text-decoration: none; /* No underline */
+  font-size: 14px; /* Match the font size of the list */
+  margin-left: 10px; /* Space between the drug name and the 'X' */
+}
+
+
+#added-drugs-ol {
+  background: transparent; /* No background for the list */
+  padding: 0; /* No padding */
+  margin: 0; /* No margin */
+  list-style-type: none; /* No bullet points */
+}
+
+.interaction-box {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f8f8f8;
 }

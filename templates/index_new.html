@@ -5,27 +5,29 @@
 </head>
 
 <body>
+
   <div class="wrapper">
-    <!-- Spreadsheet-like div for drugs list -->
-    <div id="drugs-list" class="drugs-list">
-      <ol id="drugs-ol">
-        <!-- Drugs will be added here -->
-      </ol>
-    </div>
-    <!-- Search and tags container below -->
+    <h2>Search for a Drug</h2>
     <div id="search-and-tags-container" class="search-and-tags-container">
-      <div id="tags-container" class="tags-container">
-        <!-- Selected tags will appear here -->
-      </div>
       <input type="text" name="names" id="autocomplete1" placeholder="Drug name"/>
     </div>
-    <input type="submit" value="Submit">
-  </div>
-  
-  
+  </div>    
+
+  <div class="wrapper">
+    <h2>Added Medications</h2>
+    <div id="added-drugs-list" class="drugs-list">
+      <ol id="added-drugs-ol">
+    <!-- Container for the drugs list that will display added medications -->
+      </ol>
+      <p id="no-meds-text">No meds added yet.</p>
+    </div>
+  </div>  
+
+  <input type="submit" value="Submit" id="submit-button">
+
+  <!-- Container for displaying interaction data -->
+  <div id="interaction-data-container"></div>
 
   <script src="static/drug-search.js"></script>
-
-
 
 </body>

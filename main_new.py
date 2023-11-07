@@ -54,6 +54,22 @@ def process(box):
         return jsonify({"error": "Invalid request"})
 
 
+@app.route("/interactions")
+def get_interactions():
+    pcids = request.args.get('pcids')
+    if pcids:
+        try:
+            response = requests.get(f"https://api.drugbank.com/v1/ddi?product_concept_id={pcids}", headers={'authorization': API_KEY})
+            if response.status_code == 200:
+                return jsonify(response.json())  # Send the JSON response back to the client
+            else:
+                return jsonify({"error": "API request failed"}), response.status_code
+        except requests.RequestException as e:
+            return jsonify({"error": str(e)}), 500
+    else:
+        return jsonify({"error": "No PCIDs provided"}), 400
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
