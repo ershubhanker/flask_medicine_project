@@ -59,7 +59,7 @@ def get_interactions():
     pcids = request.args.get('pcids')
     if pcids:
         try:
-            response = requests.get(f"https://api.drugbank.com/v1/ddi?product_concept_id={pcids}", headers={'authorization': API_KEY})
+            response = requests.get(f"https://api.drugbank.com/v1/ddi?product_concept_id={pcids},DBPC0097331", headers={'authorization': API_KEY})
             if response.status_code == 200:
                 return jsonify(response.json())  # Send the JSON response back to the client
             else:
